@@ -25,7 +25,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
+        'phone_number',
+        'roles',
         'password',
     ];
 
@@ -58,4 +61,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function transactions()
+    {
+        // Koneksi, dari table apa, ke field apa, dengan key dari table this dengan field apa
+        return $this->hasMany(Transaction::class, 'users_id', 'id');
+    }
 }
