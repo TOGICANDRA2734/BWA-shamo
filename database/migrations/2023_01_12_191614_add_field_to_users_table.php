@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->string('roles')->after('email')->default('USER'); // Menambahkan field pada table yang sudah dibuat
+            $table->string('phone')->after('email')->nullable(); // Menambahkan field pada table yang sudah dibuat, default null
+            $table->string('username')->after('email')->nullable();
         });
     }
 
@@ -26,7 +28,9 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColumn('roles'); // Menambahkan field pada table yang sudah dibuat
+            $table->dropColumn('phone'); // Menambahkan field pada table yang sudah dibuat, default null
+            $table->dropColumn('username');
         });
     }
 };
